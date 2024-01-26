@@ -8,7 +8,7 @@ public class Email {
 	private String password;
 	private String email;
 	private String department;
-	private int mailboxCapacity;
+	private int mailboxCapacity =500;
 	private String alternateEmail;
 	private int defaultPasswordLength = 10;
 	private String companySuffix = "anycompany.com";
@@ -17,18 +17,18 @@ public class Email {
 	public Email(String firstName, String lastName) {
 		this.firstName = firstName;
 		this.lastName = lastName;
-		System.out.println("email created " + this.firstName + " " + this.lastName);
+		//System.out.println("email created " + this.firstName + " " + this.lastName);
 		this.department = setDepartment();
-		System.out.println("Department : "+this.department);
+		//System.out.println("Department : "+this.department);
 		this.password =randomPassword(defaultPasswordLength);
 		System.out.println("Your password is  "+this.password);
 		email = firstName.toLowerCase() + "."+lastName.toLowerCase() +"@"+department+"."+companySuffix;
-		System.out.println("Your email is: "+email);
+		//System.out.println("Your email is: "+email);
 		
 	}
 	// ask for the department
 	private String setDepartment() {
-		System.out.println("enter the department codes\n1 for sales\n2 for development\n3 for accounting\n0 for none");
+		System.out.println("New worker: " + firstName+". Department codes\n1 for sales\n2 for development\n3 for accounting\n0 for none");
 		Scanner dept = new Scanner(System.in);
 		int deptChoice = dept.nextInt();
 		if(deptChoice == 1) {
@@ -60,7 +60,31 @@ public class Email {
 	
 	
 	// set the mailbox capacity
-	
+	public void setMailboxCapacity(int capacity) {
+		this.mailboxCapacity = capacity;
+	}
 	// set the alternate email
+	public void setAlternateEmail(String altEmail) {
+		this.alternateEmail =altEmail;
+	}
 	// change the password
+	public void changePassword(String password) {
+		this.password = password;
+	}
+	public int getMailboxCapacity() {
+		return mailboxCapacity;
+	}
+	public String getAlternateEmail() {
+		return alternateEmail;	
+	}
+	public String setPassword() {
+		return password;
+	}
+	
+	
+	public String showInfo() {
+		return "DISPLAY NAME: " +firstName+" "+lastName +
+				"\nCOMPANY EMAIL: "+email+
+				"\nMAILBOX CAPACITY: "+mailboxCapacity+"mb";
+	}
 }
